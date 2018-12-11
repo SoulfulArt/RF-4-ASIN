@@ -1,0 +1,116 @@
+#:kivy 1.0
+#:import np numpy
+
+#Variable definitions
+#:set fontSize 70
+#:set buttonRadius 0.8
+#:set buttonAreax 0.12
+#:set buttonAreay 0.21
+#:set buttonY 0.5
+#:set buttonInit 0.12
+#:set buttonDistance 0.22
+#:set colorRoyalBlue np.array([0, 80, 146, 230])/255
+
+<CircularBlueButton@Button>:
+
+    background_color: 0,0,0,0
+    canvas:
+        Color:
+            rgba: ((0,0,1,1) if self.state == "normal" else (.0, .0, 1, .5))
+        Ellipse:
+            pos: self.pos
+            size: 200 * buttonRadius, 201 * buttonRadius
+
+    pos_hint: {'y': buttonY, 'x': buttonInit}
+    size_hint: buttonAreax, buttonAreay
+
+<CircularRedButton@Button>:
+
+    background_color: 0,0,0,0
+    canvas:
+        Color:
+            rgba: ((1,0,0,1) if self.state == "normal" else (1, .0, 0, .5))
+        Ellipse:
+            pos: self.pos
+            size: 200 * buttonRadius, 201 * buttonRadius
+
+
+    pos_hint: {'y': buttonY, 'x': buttonInit + buttonDistance}
+    size_hint: buttonAreax, buttonAreay
+
+<CircularGreenButton@Button>:
+
+    background_color: 0,0,0,0
+    canvas:
+        Color:
+            rgba: ((0,1,0,1) if self.state == "normal" else (0, 1, 0, .5))
+        Ellipse:
+            pos: self.pos
+            size: 200 * buttonRadius, 201 * buttonRadius
+
+    pos_hint: {'y': buttonY, 'x': buttonInit + 2*buttonDistance}
+    size_hint: buttonAreax, buttonAreay
+
+<CircularYellowButton@Button>:
+
+    background_color: 0,0,0,0
+    canvas:
+        Color:
+            rgba: ((1,1,0,1) if self.state == "normal" else (1, 1, 0, .5))
+        Ellipse:
+            pos: self.pos
+            size: 200 * buttonRadius, 201 * buttonRadius
+
+    pos_hint: {'y': buttonY, 'x': buttonInit + 3*buttonDistance}
+    size_hint: buttonAreax, buttonAreay
+
+<AsinRfSystem>:
+
+    FloatLayout:
+
+        Label:
+            id: labelHeader
+            text: 'LED Controller'
+            allow_stretch: True
+            keep_ratio: False
+            pos_hint: {'y': 0.42}
+            font_size: fontSize
+            color: colorRoyalBlue
+            bold: True
+
+        CircularBlueButton:
+            id: blueButton
+            on_press: root.sendBlue()
+
+        CircularRedButton:
+            id: redButton
+            on_press: root.sendRed()
+
+        CircularGreenButton:
+            id: greenButton
+            on_press: root.sendGreen()
+
+        CircularYellowButton:
+            id: yellowButton
+            on_press: root.sendYellow()
+
+        Image:
+            id: blueLine
+            source: 'line.png'
+            keep_ratio: True
+            allow_stretch: True
+            pos_hint: {'x': 0, 'y': -.32}
+
+        Image:
+            id: asinImg
+            source: 'asin.png'
+            pos_hint: {'x': 0, 'y': 0}
+            size_hint: (None, None)
+            size: 120, 120
+
+        Image:
+            id: huberImage
+            source: 'huber.png'
+            pos_hint:{"right":1, "y":0}
+            size_hint: (None, None)
+            size: 540, 130
