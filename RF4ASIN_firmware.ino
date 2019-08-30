@@ -5,8 +5,10 @@
 #define LEDBLUE 2
 #define LEDYELLOW 15
  
-const char* ssid = "BOLSONAROLINDO";
-const char* password = "PIC@NH@S";
+//insert your ssid and password:
+
+const char* ssid = "";
+const char* password = "";
 
 void checkCmd();
 
